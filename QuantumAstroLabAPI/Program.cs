@@ -13,7 +13,6 @@ namespace QuantumAstroLabAPI
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            // Railway provides PORT environment variable
             var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
             return Host.CreateDefaultBuilder(args)
@@ -21,7 +20,7 @@ namespace QuantumAstroLabAPI
                 {
                     webBuilder.UseStartup<Startup>();
 
-                    // Bind to Railway port
+                    // Important for Railway
                     webBuilder.UseUrls($"http://0.0.0.0:{port}");
                 });
         }
