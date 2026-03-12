@@ -2,10 +2,17 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY *.csproj ./
-RUN dotnet restore
+# Copy project file
+COPY QuantumAstroLabAPI/QuantumAstroLabAPI.csproj QuantumAstroLabAPI/
 
-COPY . ./
+# Restore dependencies
+RUN dotnet restore QuantumAstroLabAPI/QuantumAstroLabAPI.csproj
+
+# Copy the rest of the code
+COPY . .
+
+# Publish project
+WORKDIR /src/QuantumAstroLabAPI
 RUN dotnet publish -c Release -o /app/publish
 
 # ---------- Runtime stage ----------
