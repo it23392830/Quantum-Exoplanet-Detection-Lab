@@ -1,229 +1,300 @@
-🌌 Quantum Exoplanet Detection Lab
+# 🌌 Quantum Exoplanet Detection Lab
 
-A cloud-based web application that simulates stellar brightness signals and detects potential exoplanets using the transit detection method.
+<div align="center">
 
-This project demonstrates how modern web technologies can be used to build scientific tools that analyze astronomical data and visualize planetary transit signals.
+![Status](https://img.shields.io/badge/status-live-brightgreen?style=for-the-badge)
+![Angular](https://img.shields.io/badge/Angular-17-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET_Core-API-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-deployed-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
-The system combines a modern Angular frontend, an ASP.NET Core API backend, and cloud deployment using Docker, Railway, and Netlify.
+**A cloud-based web application that simulates stellar brightness signals and detects potential exoplanets using the transit detection method.**
 
-🚀 Live Application
+[🚀 Live App](https://quantum-exoplanet-detection-lab.netlify.app) &nbsp;·&nbsp;
+[📡 API](https://quantum-exoplanet-detection-lab-production.up.railway.app) &nbsp;·&nbsp;
+[📖 Swagger Docs](https://quantum-exoplanet-detection-lab-production.up.railway.app/swagger)
 
-Frontend (Angular UI)
-https://quantum-exoplanet-detection-lab.netlify.app
+</div>
 
-Backend API (ASP.NET Core – Railway)
-https://quantum-exoplanet-detection-lab-production.up.railway.app
+---
 
-API Documentation (Swagger)
-https://quantum-exoplanet-detection-lab-production.up.railway.app/swagger
+## 🔭 What Is This?
 
-🛰️ What Problem Does This Solve?
+Astronomers discover planets around distant stars not by seeing them directly — but by watching a star's brightness over time.
 
-Astronomers often analyze stellar brightness over time to identify potential planets orbiting distant stars.
+When a planet passes in front of its star (called a **transit**), it blocks a tiny fraction of the light. This creates a brief, faint dip in brightness:
 
-When a planet passes in front of a star, it causes a small temporary drop in brightness. This is called the Transit Method.
-
-This system simulates that process and automatically detects possible transit events.
-
-Example light curve:
-
+```
 Brightness
-1.00 ────────────────
-      \           /
-       \_________/   ← Planet transit
+1.00  ──────────────────────────────────
+                  ╲               ╱
+                   ╲_____________╱   ← Planet transit dip
+```
 
-A drop in brightness suggests that a planet may have passed in front of the star.
+> A drop in brightness tells us: *something passed in front of that star.*
 
-✨ Key Features
+This system **simulates that exact process** — generating a realistic brightness signal, analysing it for transit patterns, and reporting whether a planet was likely detected, along with a confidence score.
 
-• Generate simulated star brightness signals
-• Detect possible exoplanet transit events
-• Visualize signals using interactive charts
-• REST API with Swagger documentation
-• Cloud deployment with Docker
-• Fully working frontend-backend architecture
-• Cross-platform system accessible from anywhere
+---
 
-🧠 How the System Works
+## 🌐 Live Application
 
-1️⃣ The frontend requests signal data from the backend API.
+| Layer | URL |
+|---|---|
+| 🖥️ Frontend (Angular · Netlify) | https://quantum-exoplanet-detection-lab.netlify.app |
+| ⚙️ Backend API (ASP.NET Core · Railway) | https://quantum-exoplanet-detection-lab-production.up.railway.app |
+| 📖 API Documentation (Swagger) | https://quantum-exoplanet-detection-lab-production.up.railway.app/swagger |
 
-2️⃣ The backend generates simulated stellar brightness measurements.
+---
 
-3️⃣ A detection service analyzes the signal to identify possible transit dips.
+## ✨ Key Features
 
-4️⃣ The frontend visualizes the light curve using charts.
+- 🌠 &nbsp; Generate simulated star brightness signals (light curves)
+- 🔍 &nbsp; Automatic exoplanet transit detection
+- 📊 &nbsp; Interactive Chart.js visualisation of the light curve
+- 🎨 &nbsp; NASA-inspired dark / light theme dashboard
+- 📡 &nbsp; REST API with Swagger / OpenAPI documentation
+- 🐳 &nbsp; Dockerised backend, deployed on Railway + Netlify
+- 🌍 &nbsp; Fully cloud-hosted and accessible from any browser
 
-5️⃣ The system displays whether a planet was detected and the confidence level.
+---
 
-🏗️ System Architecture
-User Browser
-      │
-      ▼
-Angular Frontend (Netlify)
-https://quantum-exoplanet-detection-lab.netlify.app
-      │
-      ▼
-ASP.NET Core API (Railway)
-https://quantum-exoplanet-detection-lab-production.up.railway.app
-      │
-      ▼
-Signal Generation + Planet Detection Services
-⚙️ Technology Stack
-Frontend
+## 🧠 How the System Works
 
-• Angular
-• TypeScript
-• Chart.js
-• HTML5 / CSS3
+```
+① User clicks "Generate Star Signal"
+        │
+        ▼
+② Angular frontend calls the backend API
+        │
+        ▼
+③ ASP.NET Core generates simulated brightness measurements
+        │
+        ▼
+④ Detection service scans the signal for transit dips
+        │
+        ▼
+⑤ Result returned: planetDetected + confidence score
+        │
+        ▼
+⑥ Frontend renders the light curve chart + detection card
+```
 
-Backend
+### Step by step
 
-• ASP.NET Core Web API
-• C#
-• Swagger (OpenAPI documentation)
+| Step | What Happens |
+|---|---|
+| **Signal Generation** | The backend creates 100 brightness readings that mimic a real telescope observation, including realistic noise |
+| **Transit Injection** | A simulated planetary transit dip is randomly added to some signals |
+| **Detection Analysis** | The service checks for characteristic brightness drops that match transit patterns |
+| **Confidence Scoring** | A score from `0.0` to `1.0` is calculated — how likely it is that the dip is a real transit, not just noise |
+| **Visualisation** | The Angular frontend plots the full light curve and displays the detection verdict |
 
-Cloud & DevOps
+---
 
-• Docker
-• Railway (Backend hosting)
-• Netlify (Frontend hosting)
-• GitHub (Version control)
+## 🏗️ System Architecture
 
-📂 Project Structure
-Quantum-Exoplanet-Detection-Lab
-│
-├── quantum-exoplanet-ui
-│   ├── src
-│   ├── angular.json
-│   └── package.json
-│
-├── QuantumAstroLabAPI
-│   ├── Controllers
-│   ├── Services
-│   ├── Program.cs
-│   ├── Startup.cs
-│   └── QuantumAstroLabAPI.csproj
-│
-└── Dockerfile
-🔌 API Endpoints
-Generate Star Signal
-GET /api/signal
+```
+┌─────────────────────────────────────────────────────┐
+│                    User Browser                      │
+└───────────────────────┬─────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────┐
+│         Angular Frontend  (Netlify CDN)              │
+│   • Signal chart visualisation  (Chart.js)           │
+│   • Detection result card                            │
+│   • Dark / Light theme toggle                        │
+└───────────────────────┬─────────────────────────────┘
+                        │  GET /api/signal
+                        ▼
+┌─────────────────────────────────────────────────────┐
+│        ASP.NET Core Web API  (Railway + Docker)      │
+│   • SignalController  →  GET /api/signal             │
+│   • SignalGenerationService                          │
+│   • PlanetDetectionService                           │
+│   • Swagger / OpenAPI docs                           │
+└─────────────────────────────────────────────────────┘
+```
 
-This endpoint generates simulated brightness data and analyzes it.
+---
 
-Example response:
+## ⚙️ Technology Stack
 
+### Frontend
+| Technology | Purpose |
+|---|---|
+| Angular 17 (standalone) | UI framework |
+| TypeScript | Language |
+| Chart.js | Light curve visualisation |
+| HTML5 / CSS3 | Layout and theming |
+
+### Backend
+| Technology | Purpose |
+|---|---|
+| ASP.NET Core Web API | REST API framework |
+| C# | Language |
+| Swagger / OpenAPI | API documentation |
+
+### Cloud & DevOps
+| Technology | Purpose |
+|---|---|
+| Docker | Containerisation |
+| Railway | Backend hosting |
+| Netlify | Frontend hosting |
+| GitHub | Version control |
+
+---
+
+## 📡 API Reference
+
+### `GET /api/signal`
+
+Generates a simulated stellar brightness signal and returns a transit detection result.
+
+**Example Response**
+```json
 {
-  "signal": [1.0, 0.99, 0.97, 0.95, 0.99],
+  "signal": [1.0, 0.998, 0.995, 0.981, 0.974, 0.982, 0.996, 1.001],
   "planetDetected": true,
   "confidence": 0.82
 }
+```
 
-Where:
+**Response Fields**
 
-Field	Description
-signal	Brightness values of the star over time
-planetDetected	Indicates if a possible exoplanet was detected
-confidence	Probability that the detected signal represents a real transit
-🌍 Applications of This System
-Educational Astronomy Platform
+| Field | Type | Description |
+|---|---|---|
+| `signal` | `number[]` | Array of normalised brightness values over time |
+| `planetDetected` | `boolean` | `true` if a transit dip was detected |
+| `confidence` | `number` | Probability score `0.0 – 1.0` that the signal is a real transit |
 
-Students can use this system to learn how exoplanets are detected using light curve analysis.
+> Full interactive docs at: https://quantum-exoplanet-detection-lab-production.up.railway.app/swagger
 
-Research Prototyping
+---
 
-Developers and researchers can prototype signal-processing algorithms before applying them to real telescope datasets.
+## 📂 Project Structure
 
-Astronomical Data Visualization
+```
+Quantum-Exoplanet-Detection-Lab/
+│
+├── quantum-exoplanet-ui/              # Angular frontend
+│   ├── src/
+│   │   └── app/
+│   │       ├── signal-chart/          # Main dashboard component
+│   │       │   ├── signal-chart.ts
+│   │       │   ├── signal-chart.html
+│   │       │   └── signal-chart.css
+│   │       └── services/
+│   │           └── astro.service.ts   # API communication
+│   ├── angular.json
+│   └── package.json
+│
+├── QuantumAstroLabAPI/                # ASP.NET Core backend
+│   ├── Controllers/
+│   ├── Services/
+│   ├── Program.cs
+│   └── QuantumAstroLabAPI.csproj
+│
+└── Dockerfile                         # Docker configuration
+```
 
-The application provides a simple way to visualize stellar brightness time-series data.
+---
 
-Simulation of Telescope Observations
+## 💻 Running Locally
 
-The generated signals mimic how telescopes collect brightness measurements.
+### Prerequisites
+- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [Node.js 18+](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli) — `npm install -g @angular/cli`
 
-Demonstration of Scientific Cloud Systems
+### 1 — Start the Backend
 
-The project shows how modern technologies can be used to build cloud-based scientific analysis platforms.
-
-Teaching Signal Processing Concepts
-
-The system can help demonstrate pattern recognition, anomaly detection, and time-series analysis.
-
-💻 Running the Project Locally
-Backend
-
-Navigate to the API folder:
-
+```bash
 cd QuantumAstroLabAPI
-
-Run the backend:
-
 dotnet restore
 dotnet run
+```
 
-Backend will start at:
+Backend runs at → `https://localhost:5001`  
+Swagger UI → `https://localhost:5001/swagger`
 
-https://localhost:5001
+### 2 — Start the Frontend
 
-Swagger documentation:
-
-https://localhost:5001/swagger
-Frontend
-
-Navigate to the Angular project:
-
+```bash
 cd quantum-exoplanet-ui
-
-Install dependencies:
-
 npm install
-
-Run the development server:
-
 ng serve
+```
 
-Frontend will run at:
+Frontend runs at → `http://localhost:4200`
 
-http://localhost:4200
-🐳 Docker Deployment
+---
 
-Build the container:
+## 🐳 Docker Deployment
 
+```bash
+# Build the container image
 docker build -t quantum-astro-api .
 
-Run the container:
-
+# Run the container
 docker run -p 8080:8080 quantum-astro-api
-📊 Future Improvements
+```
 
-• Use real astronomical datasets
-• Implement machine learning for transit detection
-• Support multiple star systems
-• Store historical observations in a database
-• Create a telescope observation dashboard
-• Improve noise filtering in signals
+---
 
-🔭 Real-World Inspiration
+## 🌍 Applications & Use Cases
 
-This project is inspired by real astronomical missions such as:
+| Use Case | Description |
+|---|---|
+| 🎓 **Educational Platform** | Helps students learn how exoplanets are detected via light curve analysis |
+| 🔬 **Research Prototyping** | Prototype signal-processing algorithms before applying them to real telescope data |
+| 📊 **Data Visualisation** | Simple, accessible way to visualise stellar brightness time-series data |
+| 🛸 **Telescope Simulation** | Mimics how space telescopes collect and transmit brightness measurements |
+| ☁️ **Cloud Architecture Demo** | Demonstrates modern cloud-based scientific application design |
+| 📚 **Signal Processing Teaching** | Illustrates pattern recognition, anomaly detection, and time-series analysis |
 
-• NASA Kepler Mission
-• TESS (Transiting Exoplanet Survey Satellite)
-• Transit Photometry Method used in astrophysics
+---
 
-These missions use brightness variations of stars to discover new planets.
+## 🔭 Real-World Inspiration
 
-👨‍💻 Author
+This project is inspired by real NASA missions that use the same transit detection principle:
 
-Developed as a full-stack scientific web application demonstrating:
+| Mission | Description |
+|---|---|
+| [NASA Kepler Mission](https://www.nasa.gov/mission_pages/kepler/main/index.html) | Discovered 2,600+ confirmed exoplanets using stellar brightness monitoring |
+| [TESS](https://www.nasa.gov/tess-transiting-exoplanet-survey-satellite) | Transiting Exoplanet Survey Satellite — currently scanning 200,000+ stars |
+| Transit Photometry | The core scientific method this system simulates |
 
-• Cloud architecture
-• API development
-• Data visualization
-• Scientific simulation
+---
 
-📜 License
+## 🚀 Future Improvements
 
-This project is released under the MIT License.
+- [ ] Integrate real astronomical datasets (NASA Kepler public data)
+- [ ] Implement ML-based transit detection model
+- [ ] Support multiple star system simulations
+- [ ] Store and compare historical observations in a database
+- [ ] Add noise filtering controls
+- [ ] Multi-wavelength signal analysis
+
+---
+
+## 👨‍💻 Author
+
+Developed as a full-stack scientific web application demonstrating cloud architecture, REST API design, data visualisation, and scientific simulation using modern web technologies.
+
+---
+
+## 📜 License
+
+This project is released under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+Made with ❤️ and a love for space exploration
+
+⭐ If you found this interesting, give it a star!
+
+</div>
