@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "QoSWqfGosMc38OkGOCLoTJBQzD3Va2mstmWRtupr0rxG+JV9RsYhsO4h3A5ezYw9GPRbxhgqj8DS/uFjYxEIhw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Digital.intern2\\OneDrive - Hayleys Group\\Desktop\\sliit\\Quantum-Exoplanet-Detection-Lab\\QuantumAstroLabAPI\\QuantumAstroLabAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\Digital.intern2\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
