@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AstroService {
 
-  apiUrl = "https://localhost:5001/api/signal";
+  // Railway backend API
+  apiUrl = "https://quantum-exoplanet-detection-lab-production.up.railway.app/api/signal";
 
   constructor(private http: HttpClient) {}
 
