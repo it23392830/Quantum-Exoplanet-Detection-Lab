@@ -1,15 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using QuantumAstroLabAPI.Services;
 using Microsoft.OpenApi.Models;
 
@@ -24,29 +18,29 @@ namespace QuantumAstroLabAPI
 
         public IConfiguration Configuration { get; }
 
-        // Configure Services (Dependency Injection)
+        // Configure Services
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add controllers
             services.AddControllers();
 
             // Register custom services
             services.AddScoped<SignalGeneratorService>();
             services.AddScoped<PlanetDetectionService>();
 
-            // CORS POLICY (Allows Angular Frontend)
+            // CORS POLICY
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAngular",
+                options.AddPolicy("AllowFrontend",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                     });
             });
 
-            // Register Swagger generator
+            // Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -60,10 +54,16 @@ namespace QuantumAstroLabAPI
                         Email = "astro@example.com"
                     }
                 });
+
+                // Fix Railway server port issue
+                c.AddServer(new OpenApiServer
+                {
+                    Url = "/"
+                });
             });
         }
 
-        // Configure HTTP request pipeline
+        // Configure HTTP Pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -71,20 +71,21 @@ namespace QuantumAstroLabAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            // Enable Swagger middleware
+            app.UseHttpsRedirection();
+
             app.UseSwagger();
 
-            // Enable Swagger UI
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Quantum Exoplanet Detection API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Quantum Exoplanet Detection API V1");
+
                 c.RoutePrefix = "swagger";
             });
 
             app.UseRouting();
 
-            // ENABLE CORS HERE
-            app.UseCors("AllowAngular");
+            app.UseCors("AllowFrontend");
 
             app.UseEndpoints(endpoints =>
             {
