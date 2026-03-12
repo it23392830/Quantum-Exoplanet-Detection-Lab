@@ -1,0 +1,347 @@
+<!-- isDarkTheme is the only new property — add it to signal-chart.ts as: isDarkTheme = true; -->
+<div class="lab-shell" [class.light-theme]="!isDarkTheme">
+
+  <!-- ═══════════ ANIMATED STARFIELD (hidden in light mode via CSS) ═══════════ -->
+  <div class="starfield" aria-hidden="true">
+    <div class="stars stars--sm"></div>
+    <div class="stars stars--md"></div>
+    <div class="stars stars--lg"></div>
+    <div class="nebula"></div>
+    <div class="horizon-glow"></div>
+  </div>
+
+  <!-- Light mode background pattern -->
+  <div class="light-bg-pattern" aria-hidden="true"></div>
+
+  <!-- ═══════════ SCANLINE OVERLAY ═══════════ -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ═══════════ STATUS BAR ═══════════ -->
+  <header class="status-bar">
+    <div class="status-bar__group">
+      <span class="pulse-dot"></span>
+      <span class="status-bar__text">TELEMETRY ACTIVE</span>
+    </div>
+    <div class="status-bar__center">
+      ◈ &nbsp; QUANTUM EXOPLANET DETECTION LAB &nbsp; ◈
+    </div>
+    <div class="status-bar__group">
+      <span class="status-bar__text">KEPLER ARRAY · NODE 7G</span>
+      <span class="pulse-dot pulse-dot--amber"></span>
+
+      <!-- ═══ THEME TOGGLE BUTTON ═══ -->
+      <button class="theme-toggle" (click)="isDarkTheme = !isDarkTheme" [attr.aria-label]="isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'">
+        <span class="theme-toggle__track">
+          <span class="theme-toggle__thumb">
+            <!-- Moon icon (dark mode) -->
+            <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+            </svg>
+            <!-- Sun icon (light mode) -->
+            <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+            </svg>
+          </span>
+        </span>
+        <span class="theme-toggle__label">{{ isDarkTheme ? 'DARK' : 'LIGHT' }}</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ═══════════ MAIN DASHBOARD ═══════════ -->
+  <main class="dashboard">
+
+    <!-- TITLE BLOCK -->
+    <div class="title-block">
+      <div class="title-block__eyebrow">
+        <span class="eyebrow-line"></span>
+        STELLAR PHOTOMETRY ANALYSIS SYSTEM
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="title-block__heading">
+        <span class="heading-accent">QUANTUM</span> EXOPLANET
+        <br>
+        DETECTION LAB
+      </h1>
+      <p class="title-block__sub">
+        Real-time transit signal processing &amp; machine-learning classification
+      </p>
+    </div>
+
+    <!-- METRICS ROW -->
+    <div class="metrics-row">
+      <div class="metric-chip">
+        <span class="metric-chip__label">OBSERVATION MODE</span>
+        <span class="metric-chip__value">PHOTOMETRIC</span>
+      </div>
+      <div class="metric-chip">
+        <span class="metric-chip__label">SAMPLE RATE</span>
+        <span class="metric-chip__value">100 pts / run</span>
+      </div>
+      <div class="metric-chip">
+        <span class="metric-chip__label">TARGET BAND</span>
+        <span class="metric-chip__value">Kepler-442b</span>
+      </div>
+      <div class="metric-chip">
+        <span class="metric-chip__label">API ENDPOINT</span>
+        <span class="metric-chip__value">QED · LIVE</span>
+      </div>
+    </div>
+
+    <!-- ═══════════ EXPLAINER CARD ═══════════ -->
+    <div class="explainer-card">
+      <span class="corner corner--tl" aria-hidden="true"></span>
+      <span class="corner corner--tr" aria-hidden="true"></span>
+      <span class="corner corner--bl" aria-hidden="true"></span>
+      <span class="corner corner--br" aria-hidden="true"></span>
+
+      <div class="explainer-card__header">
+        <div class="explainer-card__header-line"></div>
+        <span class="explainer-card__header-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <span class="explainer-card__header-text">HOW THIS WORKS</span>
+        <div class="explainer-card__header-line"></div>
+      </div>
+
+      <p class="explainer-card__intro">
+        This tool helps scientists search for <strong>planets orbiting distant stars</strong> — thousands of light-years away — without ever seeing those planets directly.
+      </p>
+
+      <div class="explainer-steps">
+
+        <div class="explainer-step">
+          <div class="explainer-step__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </div>
+          <div class="explainer-step__body">
+            <div class="explainer-step__title">① Watch a Star's Brightness</div>
+            <div class="explainer-step__text">
+              We point a telescope at a distant star and record how bright it appears over time. Under normal conditions, the brightness stays roughly constant.
+            </div>
+          </div>
+        </div>
+
+        <div class="explainer-step">
+          <div class="explainer-step__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M3 12h3M18 12h3"/>
+              <ellipse cx="12" cy="12" rx="9" ry="3" transform="rotate(-15 12 12)"/>
+            </svg>
+          </div>
+          <div class="explainer-step__body">
+            <div class="explainer-step__title">② Spot the Dip</div>
+            <div class="explainer-step__text">
+              When a planet passes in front of its star (called a <em>transit</em>), it blocks a tiny fraction of the starlight. This causes a brief, faint dip in brightness — like a fly walking across a light bulb.
+            </div>
+          </div>
+        </div>
+
+        <div class="explainer-step">
+          <div class="explainer-step__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M3 12l4-4 4 4 4-6 4 3"/>
+              <path d="M3 20h18"/>
+            </svg>
+          </div>
+          <div class="explainer-step__body">
+            <div class="explainer-step__title">③ Analyse the Signal</div>
+            <div class="explainer-step__text">
+              The chart below shows that brightness over time — the <strong>light curve</strong>. A noticeable dip in the middle of the graph is the key signature of a planet passing by.
+            </div>
+          </div>
+        </div>
+
+        <div class="explainer-step">
+          <div class="explainer-step__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
+            </svg>
+          </div>
+          <div class="explainer-step__body">
+            <div class="explainer-step__title">④ AI Makes the Call</div>
+            <div class="explainer-step__text">
+              A machine-learning model analyses the shape of the dip and calculates a <strong>confidence score</strong> — how likely it is that a real planet caused it, rather than random noise or another star.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="explainer-card__footer">
+        <span class="explainer-card__footer-icon" aria-hidden="true">💡</span>
+        <span>Click <strong>Generate Star Signal</strong> below to simulate a telescope observation and run the detection model in real time.</span>
+      </div>
+    </div>
+
+    <!-- GENERATE BUTTON -->
+    <div class="btn-zone">
+      <button class="btn-launch" (click)="generateSignal()">
+        <span class="btn-launch__glow"></span>
+        <span class="btn-launch__border-tl"></span>
+        <span class="btn-launch__border-br"></span>
+        <span class="btn-launch__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M12 2L12 6M12 18L12 22M2 12L6 12M18 12L22 12"/>
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M19.07 4.93l-2.83 2.83M7.76 16.24l-2.83 2.83"/>
+          </svg>
+        </span>
+        <span class="btn-launch__label">GENERATE STAR SIGNAL</span>
+        <span class="btn-launch__sub">INITIATE PHOTOMETRIC SCAN</span>
+      </button>
+    </div>
+
+    <!-- INSTRUMENT PANEL — CHART -->
+    <div class="instrument-panel" [class.instrument-panel--active]="chart">
+
+      <!-- Corner Brackets -->
+      <span class="corner corner--tl" aria-hidden="true"></span>
+      <span class="corner corner--tr" aria-hidden="true"></span>
+      <span class="corner corner--bl" aria-hidden="true"></span>
+      <span class="corner corner--br" aria-hidden="true"></span>
+
+      <!-- Panel Header -->
+      <div class="panel-header">
+        <div class="panel-header__left">
+          <span class="panel-dot" [class.panel-dot--live]="chart"></span>
+          <span class="panel-title">STELLAR BRIGHTNESS · LIGHT CURVE ANALYSIS</span>
+        </div>
+        <div class="panel-header__right">
+          <span class="panel-badge">Δ FLUX</span>
+          <span class="panel-badge">TIME SERIES</span>
+        </div>
+      </div>
+
+      <!-- Chart Canvas -->
+      <div class="chart-wrap">
+        <canvas id="signalCanvas"></canvas>
+
+        <div class="chart-empty" *ngIf="!chart">
+          <div class="chart-empty__icon">
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+              <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="1"/>
+              <circle cx="32" cy="32" r="3" fill="currentColor"/>
+              <line x1="32" y1="4" x2="32" y2="20" stroke="currentColor" stroke-width="1"/>
+              <line x1="32" y1="44" x2="32" y2="60" stroke="currentColor" stroke-width="1"/>
+              <line x1="4" y1="32" x2="20" y2="32" stroke="currentColor" stroke-width="1"/>
+              <line x1="44" y1="32" x2="60" y2="32" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </div>
+          <p class="chart-empty__text">AWAITING SIGNAL ACQUISITION</p>
+          <p class="chart-empty__sub">Press GENERATE to initiate photometric scan</p>
+        </div>
+      </div>
+
+      <!-- Axis Labels -->
+      <div class="axis-label axis-label--y">RELATIVE BRIGHTNESS (Normalized Flux)</div>
+      <div class="axis-label axis-label--x">TIME (Observation Index)</div>
+
+      <!-- Panel Footer -->
+      <div class="panel-footer">
+        <span>SNR · AUTO</span>
+        <span>FILTER · NONE</span>
+        <span>CADENCE · SHORT</span>
+      </div>
+    </div>
+
+    <!-- DETECTION RESULT CARD -->
+    <div class="detection-card"
+         *ngIf="planetDetected !== null"
+         [class.detection-card--detected]="planetDetected"
+         [class.detection-card--none]="!planetDetected">
+
+      <div class="detection-card__glow" aria-hidden="true"></div>
+      <span class="corner corner--tl" aria-hidden="true"></span>
+      <span class="corner corner--tr" aria-hidden="true"></span>
+      <span class="corner corner--bl" aria-hidden="true"></span>
+      <span class="corner corner--br" aria-hidden="true"></span>
+
+      <div class="detection-card__header">
+        <div class="detection-card__header-line"></div>
+        <span class="detection-card__header-text">DETECTION RESULT</span>
+        <div class="detection-card__header-line"></div>
+      </div>
+
+      <div class="detection-card__status">
+        <div class="status-icon" [class.status-icon--detected]="planetDetected">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="30" r="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 3"/>
+            <circle cx="30" cy="30" r="12" fill="currentColor" opacity="0.15"/>
+            <circle cx="30" cy="30" r="6" fill="currentColor" opacity="0.4"/>
+            <circle cx="30" cy="30" r="2.5" fill="currentColor"/>
+            <ellipse cx="30" cy="30" rx="22" ry="6" stroke="currentColor" stroke-width="1" opacity="0.5" transform="rotate(-20 30 30)"/>
+          </svg>
+        </div>
+        <div class="status-readout">
+          <div class="status-readout__label">PLANET DETECTED</div>
+          <div class="status-readout__value"
+               [class.status-readout__value--yes]="planetDetected"
+               [class.status-readout__value--no]="!planetDetected">
+            {{ planetDetected ? 'CONFIRMED' : 'NEGATIVE' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="confidence-section">
+        <div class="confidence-section__header">
+          <span class="confidence-section__label">DETECTION CONFIDENCE</span>
+          <span class="confidence-section__pct">{{ ((confidence ?? 0) * 100).toFixed(1) }}%</span>
+        </div>
+        <div class="confidence-bar">
+          <div class="confidence-bar__fill"
+               [style.width.%]="(confidence ?? 0) * 100"
+               [class.confidence-bar__fill--high]="(confidence ?? 0) > 0.7"
+               [class.confidence-bar__fill--med]="(confidence ?? 0) >= 0.4 && (confidence ?? 0) <= 0.7"
+               [class.confidence-bar__fill--low]="(confidence ?? 0) < 0.4">
+            <span class="confidence-bar__shimmer"></span>
+          </div>
+          <div class="confidence-bar__ticks">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="confidence-legend">
+          <span>0%</span><span>LOW</span><span>MED</span><span>HIGH</span><span>100%</span>
+        </div>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-cell">
+          <span class="data-cell__label">RAW SCORE</span>
+          <span class="data-cell__value">{{ (confidence ?? 0).toFixed(4) }}</span>
+        </div>
+        <div class="data-cell">
+          <span class="data-cell__label">CLASSIFICATION</span>
+          <span class="data-cell__value">{{ planetDetected ? 'EXOPLANET' : 'STELLAR NOISE' }}</span>
+        </div>
+        <div class="data-cell">
+          <span class="data-cell__label">SIGNAL TYPE</span>
+          <span class="data-cell__value">TRANSIT DIP</span>
+        </div>
+        <div class="data-cell">
+          <span class="data-cell__label">MODEL</span>
+          <span class="data-cell__value">QED · v2.1</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="lab-footer">
+    <span>QUANTUM EXOPLANET DETECTION LAB</span>
+    <span class="footer-dot">◆</span>
+    <span>STELLAR PHOTOMETRY DIVISION</span>
+    <span class="footer-dot">◆</span>
+    <span>QED-2047</span>
+  </footer>
+
+</div>
